@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./Store/CreateSlice";
+import firebase from "./Config/FirebaseConfig";
+import AppRouter from "./Router/Router";
+import "./App.css";
 
 function App() {
+  let [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  
+  const isUser = useSelector((state) => {
+    return state.chatReducer.userLogin;
+  });
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setLoading(true);
+        dispatch(login(true));
+      } else {
+        setLoading(true);
+      }
+
+    });
+  },[]);
+
+  if (!loading) {
+    return <div>loading</div>;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AppRouter isActive={isUser} />
     </div>
   );
 }
