@@ -40,7 +40,7 @@ const ChatBox = () => {
               ))}
               <div className="msgs_box">
                 <ul className="user_msg_ul">
-                  {filterFrienChatList[0].messages &&
+                  {filterFrienChatList[0] &&
                     filterFrienChatList[0].messages.map((msg, i) => (
                       <li
                         className={
