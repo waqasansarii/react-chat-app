@@ -6,6 +6,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import UsersList from "./UsersList";
+import firebase from "../Config/FirebaseConfig";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,20 +52,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatAndPeopleTabs({ usersData }) {
+export default function ChatAndPeopleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleTabsChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const currentUserId = firebase.auth().currentUser.uid;
+  // get global state
+  const stateSelector = useSelector((state) => {
+    return state.chatReducer;
+  });
+
+  const { chatList, friendChatUid, users } = stateSelector;
+  // console.log(chatList);
+  const filterFriendChatList = chatList.filter(
+    (list) => list.userId === currentUserId || list.friendId === currentUserId
+  );
+
+  const filterUsersList = users.filter((userList) => {
+    return !filterFriendChatList.find((chatList) => {
+      return (
+        chatList.userId === userList.uid || chatList.friendId === userList.uid
+      );
+    });
+  });
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.mainBg}>
         <Tabs
           value={value}
-          onChange={handleChange}
+          onChange={handleTabsChange}
           aria-label="simple tabs example"
           indicatorColor="primary"
           textColor="primary"
@@ -73,10 +95,18 @@ export default function ChatAndPeopleTabs({ usersData }) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <UsersList seeMsg />
+        <UsersList
+          seeMsg
+          allUsersData={filterFriendChatList}
+          currentId={currentUserId}
+          selectChatId={friendChatUid}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <UsersList allUsersData={usersData} />
+        <UsersList allUsersData={filterUsersList}
+          selectChatId={friendChatUid}
+
+         />
       </TabPanel>
     </div>
   );

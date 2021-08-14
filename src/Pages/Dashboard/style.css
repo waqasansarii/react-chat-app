@@ -96,6 +96,10 @@
 .MuiTabs-flexContainer{
     justify-content: center;
 }
+.highlight{
+    opacity: .6;
+    background-color: ghostwhite;
+}
 
 /* chat box component  */
 

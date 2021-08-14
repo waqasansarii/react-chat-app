@@ -23,7 +23,7 @@ const Dashboard = () => {
   const selector = useSelector((state) => {
     return state.chatReducer;
   });
-  let { currentUserData, users } = selector;
+  let { currentUserData } = selector;
 
   useEffect(() => {
     const getDataFromFirebase = async () => {
@@ -78,7 +78,7 @@ const Dashboard = () => {
         <div className="dashboard_left_content">
           <CurrentUserHead userData={currentUserData} />
           {/* <UsersList /> */}
-          <ChatAndPeopleTabs usersData={users} />
+          <ChatAndPeopleTabs  />
         </div>
         <div className="dashboar_right_contet">
           <ChatBox />

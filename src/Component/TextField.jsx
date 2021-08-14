@@ -10,6 +10,8 @@ const TextField = () => {
     const selector = useSelector((state) => {
     return state.chatReducer;
   });
+  const friendName = selector.currentChatBox[0].name
+  const currentUserName = selector.currentUserData.name
   const chating = selector.chatList;
   const selectFriendId = selector.friendChatUid;
   const currentUserId = firebase.auth().currentUser.uid;
@@ -27,6 +29,8 @@ useEffect(()=>{
   const chatRoomDatObject = {
     userId: currentUserId,
     friendId: selectFriendId,
+    name:currentUserName,
+    friendName:friendName,
     messages: firebase.firestore.FieldValue.arrayUnion({
       dateAndTime: time,
       message: msgInput,

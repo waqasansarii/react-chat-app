@@ -29,7 +29,7 @@ const CurrentUserHead = ({ userData }) => {
     <div className="crnt_user_head_container">
       <div className="crnt_user_head_md">
         <div className="Crnt_user_info">
-          <div className="crnt_user_name">
+          <div className="crnt_user_name" key={uid}>
             <img className="c_usr_img" src={img ? img : userIcon} alt="user" />
             <p>{name}</p>
           </div>
@@ -37,7 +37,6 @@ const CurrentUserHead = ({ userData }) => {
               <img src={more} alt="more" />
           </div> */}
           <div>
-            {/* <button onClick={handleLogout}>logout</button> */}
             <Button onClick={handleLogout} variant="outlined" color="primary">
               logout
             </Button>
