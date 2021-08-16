@@ -27,10 +27,15 @@ const chatSlice = createSlice({
     chatDataFromFirebase : (state,action)=>{
       //  console.log(action.payload)
        state.chatList= action.payload
+    },
+    // back to chat list from chat box for mobile view 
+    backToChatList:(state,action)=>{
+      // console.log(action.payload)
+      state.friendChatUid= action.payload
     }
   },
 });
 
-export const  {login,currentUserDataSet,getAllUsers,openChatBox,chatDataFromFirebase} = chatSlice.actions 
+export const  {login,currentUserDataSet,getAllUsers,openChatBox,chatDataFromFirebase,backToChatList} = chatSlice.actions 
 
 export const chatReducer = chatSlice.reducer;

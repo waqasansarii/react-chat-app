@@ -100,8 +100,22 @@
     opacity: .6;
     background-color: ghostwhite;
 }
+.list_link{
+    text-decoration: none;
+    color: inherit;
+    /* display: none; */
+}
 
 /* chat box component  */
+
+.back_link{
+    /* width: 100%; */
+    /* display: flex; */
+    /* align-items: center; */
+    text-decoration: none;
+    color: inherit;
+    display: none;
+}
 
 .chat_container{
     width: 100%;
@@ -113,7 +127,7 @@
     padding: 20px;
     box-shadow: 0px 3px 6px gainsboro;
 }
-.chat_head>p{
+.chat_head p{
     font-weight: bold;
     margin-left: 15px;
     font-size: 1.2rem;
@@ -152,6 +166,7 @@
 }
 .user_msg_li>div>p{
     width: max-content;
+    max-width: 250px;
     padding: 5px 10px;
     border-radius: 10px;
     background-color: rgb(19, 68, 19);
@@ -171,6 +186,7 @@
 .crnt_user_li>div>p{
     width: max-content;
     padding: 5px 15px;
+    max-width: 250px;
     border-radius: 10px;
     background-color: rgb(52, 86, 151);
     color: white;
@@ -202,4 +218,106 @@
     border: none;
     outline: none;
     padding: 10px;
+}
+
+/* mob view chat box  */
+.mobViewCHatBox_container{
+    display: none;
+}
+
+@media screen and (max-width:900px){
+    .dashboard_left_content,.crnt_user_head_container,.userList_container{
+        width: 300px;
+    }
+    .crnt_user_head_container{
+        padding: 12px;
+    }
+    .c_usr_img{
+        width: 35px;
+        height: 35px;
+    }
+    .crnt_user_name>p{
+        font-size: .9rem;
+    }
+    .MuiButton-root{
+        font-size: .8rem !important;
+        line-height: inherit !important;
+    }
+    .MuiTab-root{
+        min-width: inherit !important;
+    }
+    .MuiTabs-flexContainer{
+        justify-content: space-around;
+    }
+    .frndList_ul>li{
+        padding: 10px;
+    }
+    .short_msg{
+        font-size: .7rem;
+    }
+    .MuiTabs-root{
+        min-height: 35px !important;
+    }
+    .MuiTab-root{
+        font-size: .75rem !important;
+    }
+}
+@media screen and (max-width:640px){
+    .dashboar_right_contet{
+        display: none;
+    }
+    .mobViewCHatBox_container,.back_link{
+        display: block;
+    }
+    .dashboard_left_content,.crnt_user_head_container,.userList_container{
+        width: 100%;
+    }
+    .MuiTab-root{
+        min-width: 160px !important;
+    }
+    .c_usr_img{
+        width: 40px;
+        height: 40px;
+    }
+    .crnt_user_name>p{
+        font-size: 1rem;
+    }
+    .msgs_box{
+        height: 77vh;
+        padding: 15px;
+    }
+    .msg_input{
+        padding: 15px;
+        padding-top: 2px;
+        padding-bottom: 3px;
+    }
+}
+@media screen and (max-width:400px){
+    .crnt_user_li>div>p,.user_msg_li>div>p{
+        font-size: .8rem;
+        max-width: 200px;
+    }
+    .msg_img{
+        width: 20px;
+        height: 20px;
+    }
+    .msgs_box{
+        height: 81.5vh;
+        padding: 11px;
+    }
+    .msg_input{
+        padding: 10px;
+        padding-top: 2px;
+        padding-bottom: 3px;
+    }
+    .chat_head{
+        padding: 12px;
+    }
+    .c_usr_img{
+        width: 30px;
+        height: 30px;
+    }
+    .chat_head p{
+        font-size: 1rem;
+    }
 }

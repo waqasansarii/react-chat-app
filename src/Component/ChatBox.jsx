@@ -1,11 +1,15 @@
 import React, { useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
-// assets
-import user from "../Assets/userIcon.png";
+import { useSelector,useDispatch } from "react-redux";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import TextField from "./TextField";
 import firebase from "../Config/FirebaseConfig";
+import { Link } from "react-router-dom";
+import {backToChatList} from '../Store/CreateSlice'
+// assets
+import user from "../Assets/userIcon.png";
 
 const ChatBox = () => {
+  const dispatch = useDispatch()
   const selector = useSelector((state) => {
     return state.chatReducer;
   });
@@ -13,7 +17,7 @@ const ChatBox = () => {
   const currentSelectUserHeadInfo = selector.currentChatBox;
   const chating = selector.chatList;
   const selectFriendId = selector.friendChatUid;
-  // console.log(chating);
+  // console.log(selectFriendId);
   const filterFrienChatList = chating.filter(
     (list) =>
       (list.userId === currentUserId && list.friendId === selectFriendId) ||
@@ -26,6 +30,11 @@ const ChatBox = () => {
     }
   }, [selectFriendId]);
 
+  // back to list function 
+  const handleBackToChatList = ()=>{
+    dispatch(backToChatList(''))
+  }
+
   return (
     <>
       <div className="chat_container">
@@ -34,8 +43,11 @@ const ChatBox = () => {
             <div className="chat_content">
               {currentSelectUserHeadInfo.map((val) => (
                 <div className="chat_head" key={val.uid}>
-                  <img src={user} className="c_usr_img" alt="user" />
-                  <p>{val.name}</p>
+                  <Link className="back_link" to="/dashboard" onClick={handleBackToChatList}>
+                    <ArrowBackIosIcon className="back_link_icon" />
+                  </Link>
+                    <img src={user} className="c_usr_img" alt="user" />
+                    <p>{val.name}</p>
                 </div>
               ))}
               <div className="msgs_box">

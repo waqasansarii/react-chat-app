@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { openChatBox } from "../Store/CreateSlice";
 import { useDispatch } from "react-redux";
 // assets
 import user from "../Assets/userIcon.png";
+import { Link, useHistory } from "react-router-dom";
 
 const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [width, setWidth] = useState(window.innerWidth);
+  React.useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWidth(window.innerWidth);
+    });
+    return () =>
+      window.removeEventListener("resize", () => {
+        setWidth(window.innerWidth);
+      });
+  }, []);
   const handleChatId = (id) => {
+    if (width <= 640) {
+      history.push(`/dashboard/${id}`);
+    }
     dispatch(openChatBox(id));
   };
   return (
@@ -38,6 +53,12 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                         : ""
                     }
                   >
+                    {/* <Link
+                      className="list_link"
+                      to={`/dashboard/${
+                        value.uid || value.friendId || value.userId
+                      }`}
+                    > */}
                     <div className="msg_list">
                       <img className="c_usr_img" src={user} alt="user" />
                       <div>
@@ -50,11 +71,14 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                         </p>
                         {seeMsg ? (
                           <p className="short_msg">
-                            {value.messages[value.messages.length - 1].message}
+                            {value.messages[
+                              value.messages.length - 1
+                            ].message.substring(0, 45)}
                           </p>
                         ) : null}
                       </div>
                     </div>
+                    {/* </Link> */}
                   </li>
                 );
               })}
