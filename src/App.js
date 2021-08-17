@@ -19,10 +19,7 @@ function App() {
     state: 'online',
     lastChange:new Date().toLocaleString()
 };
-const isOfflineForFirestore = {
-  state: 'offline',
-  lastChange:new Date().toLocaleString()
-};
+
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -33,7 +30,6 @@ const isOfflineForFirestore = {
         dispatch(login(true));
       } else {
         setLoading(true);
-        allUsers.doc(user.uid).update(isOfflineForFirestore)
       }
       // firebase.firestore().collection('statu').doc().onDisconnected()
       

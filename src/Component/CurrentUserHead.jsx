@@ -7,17 +7,23 @@ import { useDispatch } from "react-redux";
 // import more from "../Assets/more.png";
 import userIcon from "../Assets/userIcon.png";
 
-
 const CurrentUserHead = ({ userData }) => {
-
   let { name, uid, img } = userData;
   const dispatch = useDispatch();
   const history = useHistory();
+  const allUsers = firebase.firestore().collection("users");
+
+  const isOfflineForFirestore = {
+    state: "offline",
+    lastChange: new Date().toLocaleString(),
+  };
   const handleLogout = () => {
     firebase
       .auth()
       .signOut()
       .then(() => {
+        allUsers.doc(uid).update(isOfflineForFirestore);
+
         dispatch(login(false));
         history.push("/");
       })
