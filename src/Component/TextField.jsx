@@ -31,19 +31,27 @@ useEffect(()=>{
     friendId: selectFriendId,
     name:currentUserName,
     friendName:friendName,
+    lastSenderId:currentUserId,
     time:time,
+    hasReadAll:false,
     messages: firebase.firestore.FieldValue.arrayUnion({
       dateAndTime: time,
       message: msgInput,
       senderId: currentUserId,
+      hasRead:false
     }),
   };
   const existUserChatObject = {
     time:time,
+    hasReadAll:false,
+    lastSenderId:currentUserId,
+
     messages: firebase.firestore.FieldValue.arrayUnion({
       dateAndTime: time,
       message: msgInput,
       senderId: currentUserId,
+      hasRead:false
+
     }),
   };
   const checkUserExist =  () => {

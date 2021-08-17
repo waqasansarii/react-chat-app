@@ -28,7 +28,7 @@ const ChatBox = () => {
     if (selectFriendId) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [selectFriendId,filterFrienChatList]);
+  }, [selectFriendId]);
 
   // back to list function 
   const handleBackToChatList = ()=>{

@@ -71,6 +71,8 @@ export default function ChatAndPeopleTabs() {
   const filterFriendChatList = chatList.filter(
     (list) => list.userId === currentUserId || list.friendId === currentUserId
   );
+  // console.log(filterFriendChatList)
+  
 
   const filterUsersList = users.filter((userList) => {
     return !filterFriendChatList.find((chatList) => {
@@ -79,6 +81,7 @@ export default function ChatAndPeopleTabs() {
       );
     });
   });
+
 
   return (
     <div className={classes.root}>
@@ -90,7 +93,7 @@ export default function ChatAndPeopleTabs() {
           indicatorColor="primary"
           textColor="primary"
         >
-          <Tab label="Chat" {...a11yProps(0)} />
+          <Tab label={'Chats'} {...a11yProps(0)} />
           <Tab label="People" {...a11yProps(1)} />
         </Tabs>
       </AppBar>

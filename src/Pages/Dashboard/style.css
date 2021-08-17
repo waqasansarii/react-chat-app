@@ -84,6 +84,7 @@
 }
 .frndList_ul>li{
     padding: 10px 20px;
+    position: relative;
 }
 .frndList_ul>li:hover{
     background-color: ghostwhite;
@@ -130,6 +131,16 @@
 }
 .blackNumber{
     background-color: #202124;
+}
+.unreadMsg{
+    background-color: greenyellow;
+    padding: 2px 8px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    color: white;
+    font-size: .8rem;
 }
 
 /* chat box component  */

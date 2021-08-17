@@ -61,6 +61,7 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
           <ul className="frndList_ul">
             {allUsersData &&
               allUsersData.map((value, i) => {
+                // console.log(value);
                 let getName = value.uid
                   ? value.name
                   : value.userId === currentId
@@ -78,6 +79,21 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                 const cyanClr = alphabet
                   .slice(15, 20)
                   .some((val) => getName.slice(0, 1).toUpperCase() === val);
+
+                  // filter unread number of messages 
+                const unreadList = [];
+                const unreadMsg =
+                  // value.lastSenderId !== currentId
+                  //   ?
+                 value.messages? value.messages.map((val) => {
+                    if (val.hasRead === false && val.senderId !== currentId) {
+                      unreadList.push(val);
+                    }
+                    return val
+                  })
+                : null;
+                // console.log(unreadMsg)
+                // console.log(unreadList)
 
                 return (
                   <li
@@ -117,9 +133,6 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                         }
                       >
                         {getName.slice(0, 1).toUpperCase()}
-                        {/* {alphabet.forEach((alpha=>{
-                          
-              }))}  */}
                       </span>
                       <div>
                         <p className="msg_name">{getName}</p>
@@ -131,6 +144,9 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                           </p>
                         ) : null}
                       </div>
+                      <p className={unreadList.length ? "unreadMsg" : ""}>
+                        {unreadList.length || ""}
+                      </p>
                     </div>
                   </li>
                 );
