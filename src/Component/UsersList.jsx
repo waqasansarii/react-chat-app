@@ -31,6 +31,12 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
           <ul className="frndList_ul">
             {allUsersData &&
               allUsersData.map((value, i) => {
+                let getName = value.uid
+                  ? value.name
+                  : value.userId === currentId
+                  ? value.friendName
+                  : value.name;
+                  
                 return (
                   <li
                     key={i}
@@ -53,21 +59,19 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                         : ""
                     }
                   >
-                    {/* <Link
-                      className="list_link"
-                      to={`/dashboard/${
-                        value.uid || value.friendId || value.userId
-                      }`}
-                    > */}
                     <div className="msg_list">
-                      <img className="c_usr_img" src={user} alt="user" />
+                      {/* <img className="c_usr_img" src={user} alt="user" /> */}
+                      <span className="nameTitle">
+                        {getName.slice(0, 1).toUpperCase()}
+                      </span>
                       <div>
                         <p className="msg_name">
-                          {value.uid
+                          {/* {value.uid
                             ? value.name
                             : value.userId === currentId
                             ? value.friendName
-                            : value.name}
+                            : value.name} */}
+                          {getName}
                         </p>
                         {seeMsg ? (
                           <p className="short_msg">
@@ -78,7 +82,6 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                         ) : null}
                       </div>
                     </div>
-                    {/* </Link> */}
                   </li>
                 );
               })}

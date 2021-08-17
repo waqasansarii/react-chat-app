@@ -44,9 +44,9 @@ useEffect(()=>{
       senderId: currentUserId,
     }),
   };
-  const checkUserExist = async () => {
+  const checkUserExist =  () => {
     const chatRoomId = `${currentUserId}.${selectFriendId}`;
-    let userExist = createChatRoom
+    let userExist =  createChatRoom
       .doc(chatRoomId)
       .get()
       .then((data) => {
@@ -57,9 +57,9 @@ useEffect(()=>{
       });
     return userExist;
   };
-  const checkUltarnateUserIdExist = async () => {
+  const checkUltarnateUserIdExist =  () => {
     const chatRoomId = `${selectFriendId}.${currentUserId}`;
-    let userExist = createChatRoom
+    let userExist =  createChatRoom
       .doc(chatRoomId)
       .get()
       .then((data) => {

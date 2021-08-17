@@ -105,6 +105,16 @@
     color: inherit;
     /* display: none; */
 }
+.nameTitle{
+    background-color: orange;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    height: 40px;
+    border-radius: 50%;
+}
 
 /* chat box component  */
 
@@ -328,7 +338,6 @@
         font-size: 1rem;
     }
     .msgs_box{
-        /* padding: 15px; */
         padding-bottom: 60px;
     }
     .msg_input{
@@ -347,8 +356,6 @@
         height: 20px;
     }
     .msgs_box{
-        /* height: 81.5vh; */
-        /* padding: 11px; */
         padding-top: 60px;
     }
     .msg_input{
