@@ -50,7 +50,7 @@
 
 .userList_container{
     width: 400px;
-    max-height: 86vh;
+    max-height: 77vh;
     overflow-y: auto;
     padding: 0px 2px;
     /* padding: 20px; */
@@ -105,8 +105,10 @@
     color: inherit;
     /* display: none; */
 }
-.nameTitle{
-    background-color: orange;
+.orngNumber{
+    background-color: #c26401;
+}
+.msg_list>span{
     width: 40px;
     display: flex;
     align-items: center;
@@ -114,6 +116,20 @@
     font-weight: 600;
     height: 40px;
     border-radius: 50%;
+    color: white;
+
+}
+.grnNumber{
+    background-color: #137333;
+}
+.blueNumber{
+    background-color: #1967d2;
+}
+.cyanNumber{
+    background-color: #007b83;
+}
+.blackNumber{
+    background-color: #202124;
 }
 
 /* chat box component  */
@@ -151,7 +167,7 @@
     padding: 20px;
     padding-top: 100px;
     padding-bottom: 80px;
-    height: 100vh;
+    max-height: 100vh;
     overflow-y: auto;
     /* padding-bottom: 0px; */
 }
@@ -200,6 +216,11 @@
     margin-bottom: 0px;
     
 }
+.status{
+    font-size: .8rem !important;
+    font-weight: normal !important;
+    color: gray;
+}
 .crnt_user_li>div>p{
     width: max-content;
     padding: 5px 15px;
@@ -242,6 +263,10 @@
     border: none;
     outline: none;
     padding: 10px;
+}
+.sentMsgIcon{
+    margin-left: 5px;
+    font-size: 2rem !important;
 }
 
 /* mob view chat box  */
@@ -350,6 +375,12 @@
     .crnt_user_li>div>p,.user_msg_li>div>p{
         font-size: .8rem;
         max-width: 200px;
+    }
+    .msg_input>input{
+        width: 90%;
+    }
+    .sentMsgIcon{
+        font-size: 2rem !important;
     }
     .msg_img{
         width: 20px;

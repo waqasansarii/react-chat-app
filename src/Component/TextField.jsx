@@ -31,6 +31,7 @@ useEffect(()=>{
     friendId: selectFriendId,
     name:currentUserName,
     friendName:friendName,
+    time:time,
     messages: firebase.firestore.FieldValue.arrayUnion({
       dateAndTime: time,
       message: msgInput,
@@ -38,6 +39,7 @@ useEffect(()=>{
     }),
   };
   const existUserChatObject = {
+    time:time,
     messages: firebase.firestore.FieldValue.arrayUnion({
       dateAndTime: time,
       message: msgInput,
@@ -76,7 +78,7 @@ useEffect(()=>{
     const chatRoomId = `${currentUserId}.${selectFriendId}`;
     const ulternateChatRoomId = `${selectFriendId}.${currentUserId}`;
     if (checkExistens || checkUlternateIdExistens) {
-      console.log("");
+      // console.log("");
       createChatRoom
         .doc(checkExistens ? chatRoomId : ulternateChatRoomId)
         .update(existUserChatObject);
@@ -106,7 +108,7 @@ useEffect(()=>{
           alt="..."
           onClick={sendMessage}
         /> */}
-        <SendIcon onClick={sendMessage}/>
+        <SendIcon className='sentMsgIcon' onClick={sendMessage}/>
       </div>
     </div>
   );

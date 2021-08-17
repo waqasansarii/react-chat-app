@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { openChatBox } from "../Store/CreateSlice";
 import { useDispatch } from "react-redux";
 // assets
-import user from "../Assets/userIcon.png";
-import { Link, useHistory } from "react-router-dom";
+// import user from "../Assets/userIcon.png";
+import { useHistory } from "react-router-dom";
 
 const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
   const dispatch = useDispatch();
@@ -24,6 +24,36 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
     }
     dispatch(openChatBox(id));
   };
+
+  const alphabet = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
   return (
     <div className="userList_container">
       <div className="userList_md">
@@ -36,7 +66,19 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                   : value.userId === currentId
                   ? value.friendName
                   : value.name;
-                  
+                const grnClr = alphabet
+                  .slice(0, 5)
+                  .some((val) => getName.slice(0, 1).toUpperCase() === val);
+                const blueClr = alphabet
+                  .slice(5, 10)
+                  .some((val) => getName.slice(0, 1).toUpperCase() === val);
+                const orangeClr = alphabet
+                  .slice(10, 15)
+                  .some((val) => getName.slice(0, 1).toUpperCase() === val);
+                const cyanClr = alphabet
+                  .slice(15, 20)
+                  .some((val) => getName.slice(0, 1).toUpperCase() === val);
+
                 return (
                   <li
                     key={i}
@@ -61,18 +103,26 @@ const UsersList = ({ allUsersData, seeMsg, currentId, selectChatId }) => {
                   >
                     <div className="msg_list">
                       {/* <img className="c_usr_img" src={user} alt="user" /> */}
-                      <span className="nameTitle">
+                      <span
+                        className={
+                          grnClr
+                            ? "grnNumber"
+                            : blueClr
+                            ? "blueNumber"
+                            : orangeClr
+                            ? "orngNumber"
+                            : cyanClr
+                            ? "cyanNumber"
+                            : "blackNumber"
+                        }
+                      >
                         {getName.slice(0, 1).toUpperCase()}
+                        {/* {alphabet.forEach((alpha=>{
+                          
+              }))}  */}
                       </span>
                       <div>
-                        <p className="msg_name">
-                          {/* {value.uid
-                            ? value.name
-                            : value.userId === currentId
-                            ? value.friendName
-                            : value.name} */}
-                          {getName}
-                        </p>
+                        <p className="msg_name">{getName}</p>
                         {seeMsg ? (
                           <p className="short_msg">
                             {value.messages[

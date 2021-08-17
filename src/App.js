@@ -12,15 +12,31 @@ function App() {
   const isUser = useSelector((state) => {
     return state.chatReducer.userLogin;
   });
+  // const userId = firebase.auth().currentUser.uid
+  // console.log(userId)
+  const allUsers = firebase.firestore().collection('users')
+  const isOnlineForFirestore = {
+    state: 'online',
+    lastChange:new Date().toLocaleString()
+};
+const isOfflineForFirestore = {
+  state: 'offline',
+  lastChange:new Date().toLocaleString()
+};
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setLoading(true);
+        // console.log(user)
+        allUsers.doc(user.uid).update(isOnlineForFirestore)
         dispatch(login(true));
       } else {
         setLoading(true);
+        allUsers.doc(user.uid).update(isOfflineForFirestore)
       }
+      // firebase.firestore().collection('statu').doc().onDisconnected()
+      
 
     });
   },[]);

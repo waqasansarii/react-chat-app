@@ -53,7 +53,7 @@ const Dashboard = () => {
 
     // get chat room data from firebase 
     const getChatRoomData = async () => {
-      chatRoom.onSnapshot((chatData) => {
+      chatRoom.orderBy('time','desc').onSnapshot((chatData) => {
         const allChatData = [];
         chatData.forEach((res) => {
           allChatData.push(res.data());

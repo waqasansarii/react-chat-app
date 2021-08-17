@@ -47,7 +47,10 @@ const ChatBox = () => {
                     <ArrowBackIosIcon className="back_link_icon" />
                   </Link>
                     <img src={user} className="c_usr_img" alt="user" />
+                    <div>
                     <p>{val.name}</p>
+                    <p className="status">{val.state==='online'?val.state: `last seen ${val.lastChange}`}</p>
+                    </div>
                 </div>
               ))}
               <div className="msgs_box">
