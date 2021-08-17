@@ -124,6 +124,11 @@
 .chat_head{
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 999999;
+    background-color: white;
     padding: 20px;
     box-shadow: 0px 3px 6px gainsboro;
 }
@@ -134,9 +139,11 @@
 }
 .msgs_box{
     padding: 20px;
-    height: 78vh;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    height: 100vh;
     overflow-y: auto;
-    padding-bottom: 0px;
+    /* padding-bottom: 0px; */
 }
 .msgs_box::-webkit-scrollbar{
     width: 8px;
@@ -197,11 +204,18 @@
     color: gray;
     /* background-color: rgb(52, 86, 151); */
 }
+.input_section{
+    position: fixed;
+    bottom: 0px;
+    width: 68%;
+}
 .msg_input{
     display: flex;
+    background-color: white;
     align-items: center;
     width: 100%;
     padding: 20px;
+    padding-right: 0px;
     padding-top: 5px;
     padding-bottom: 9px;
     /* position: absolute; */
@@ -212,7 +226,7 @@
     object-fit: contain;
 }
 .msg_input>input{
-    width: 95%;
+    width: 96%;
     background-color: gainsboro;
     border-radius: 10px;
     border: none;
@@ -224,11 +238,28 @@
 .mobViewCHatBox_container{
     display: none;
 }
-
+@media screen and (max-width:1260px){
+    .input_section{
+        width: 63%;
+    }
+}
+@media screen and (max-width:1130px){
+    .input_section{
+        width: 60%;
+    }
+}
+@media screen and (max-width:1000px){
+    .input_section{
+        width: 55%;
+    }
+}
 @media screen and (max-width:900px){
     .dashboard_left_content,.crnt_user_head_container,.userList_container{
         width: 300px;
     }
+        .input_section{
+            width: 60%;
+        }
     .crnt_user_head_container{
         padding: 12px;
     }
@@ -261,8 +292,22 @@
     .MuiTab-root{
         font-size: .75rem !important;
     }
+
+}
+@media screen and (max-width:750px){
+    .input_section{
+        width: 57%;
+    }
+}
+@media screen and (max-width:700px){
+    .input_section{
+        width: 52%;
+    }
 }
 @media screen and (max-width:640px){
+    .input_section{
+        width: 100%;
+    }
     .dashboar_right_contet{
         display: none;
     }
@@ -283,8 +328,8 @@
         font-size: 1rem;
     }
     .msgs_box{
-        height: 77vh;
-        padding: 15px;
+        /* padding: 15px; */
+        padding-bottom: 60px;
     }
     .msg_input{
         padding: 15px;
@@ -302,8 +347,9 @@
         height: 20px;
     }
     .msgs_box{
-        height: 81.5vh;
-        padding: 11px;
+        /* height: 81.5vh; */
+        /* padding: 11px; */
+        padding-top: 60px;
     }
     .msg_input{
         padding: 10px;
