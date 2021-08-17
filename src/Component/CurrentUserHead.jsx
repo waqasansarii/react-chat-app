@@ -19,17 +19,17 @@ const CurrentUserHead = ({ userData }) => {
   };
   const handleLogout = () => {
     firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        allUsers.doc(uid).update(isOfflineForFirestore);
-
-        dispatch(login(false));
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .auth()
+    .signOut()
+    .then(() => {
+      
+      dispatch(login(false));
+      // allUsers.doc(uid).update(isOfflineForFirestore);
+      history.push("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   };
   return (
     <div className="crnt_user_head_container">
